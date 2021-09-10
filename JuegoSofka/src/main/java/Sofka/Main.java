@@ -5,7 +5,10 @@
  */
 package Sofka;
 
+import Class.Juego;
+import Class.Jugador;
 import Connection.ConnectionFireBase;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,13 +16,11 @@ import Connection.ConnectionFireBase;
  */
 public class Main {
         public static void main(String args[]) {
-    
-            try{
-                ConnectionFireBase conectar = new ConnectionFireBase();
-                conectar.conecction();
-            }catch(Exception e){
-                System.out.print("Error al conectar con FireBase");
-            }
-        
+            
+            Jugador jugador = new Jugador();
+            
+            Juego juego=new Juego(jugador);
+            
+            juego.iniciar();
     }
 }
