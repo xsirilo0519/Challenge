@@ -1,6 +1,7 @@
 
 package Class;
 
+import Helpers.Capturar;
 import java.util.LinkedList;
 
 /**
@@ -24,9 +25,16 @@ public class Ronda {
         this.nivel=nivel;
     }
     
+    public void iniciar(){
+        Pick();
+        Capturar.CapturarEntero("Nivel: "+this.nivel+"\n"+
+               this.preguntaSelect.toString());
+        
+    }
+    
     private void Pick(){
         if(!getPreguntas().isEmpty()){
-            int max = getPreguntas().size()-1;
+            int max = getPreguntas().size();
             int min = 0;
             int range = max - min;
             int rand = (int)(Math.random() * range) + min;

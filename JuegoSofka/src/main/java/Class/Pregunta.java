@@ -24,13 +24,10 @@ public class Pregunta {
         this.respuesta = respuesta;
         this.puntaje = puntos;
     }
-
-    
     
     public String getEnunciado() {
         return enunciado;
     }
-
     
     public int getPuntaje() {
         return puntaje;
@@ -42,13 +39,11 @@ public class Pregunta {
     
     @Override
     public String toString(){
-    return getEnunciado()+"\n"+getOpcions().toString()+"\n";
+        String opc="";
+        for(int i=0;i<getOpcions().size();i++){
+            opc=opc+"Opcion "+(i+1)+": "+getOpcions().get(i)+"\n";
+        }
+    return       "Pregunta: "+getEnunciado()+"\nIngrese el numero de la opcion correcta:\n"+opc+"\n";
     }
-    
-    
-    
-    
-    
-    
-    
+
 }

@@ -38,10 +38,10 @@ public class Main {
             + "0 Salir");
              
                 if(select==1){
-                    /*Jugador jugador = new Jugador();
+                    Jugador jugador = new Jugador();
                     Juego juego=new Juego(jugador);
-                    juego.iniciar();*/
-                    Data.getRondas();
+                    juego.setRondas(Data.getRondas());
+                    juego.iniciar();
                 }else{
                     if(select==2){
             

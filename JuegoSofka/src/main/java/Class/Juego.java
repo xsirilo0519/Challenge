@@ -30,12 +30,17 @@ public class Juego extends Mapper{
     }
     
     public void iniciar(){
-
-   
         this.estado="Jugando";
         Capturar.MostrarMensaje("Hola "+getJugador().getName()+"\n"
         +"Vamos a comenzar");
-        
+      
+        for(int i=1;i<3;i++){
+            final int cont=i;
+            Ronda h=rondas.stream().filter(r->r.nivel==cont).findFirst().orElse(null);
+            if(h!=null){
+            h.iniciar();
+            }
+        }
     }
 
     public Jugador getJugador() {
