@@ -21,7 +21,7 @@ public class Jugador {
        this.Document= Capturar.CapturarEntero("Ingrese su Documento");
     }
 
-        public String getName() {
+    public String getName() {
         return Name;
     }
 

@@ -5,6 +5,8 @@
  */
 package Class;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Sebas
@@ -14,13 +16,17 @@ public class Juego {
     double acumulado;
     String estado;
     Jugador jugador;
+    ArrayList<Ronda> rondas = new ArrayList<Ronda>();
     
     public Juego(Jugador jugador) {
        this.jugador=jugador;
     }
     
     public void iniciar(){
-    System.out.print(getJugador());
+    this.rondas.add(new Ronda());
+    this.rondas.add(new Ronda());
+    this.rondas.add(new Ronda());
+    this.rondas.add(new Ronda());
     }
 
     public Jugador getJugador() {
@@ -48,6 +54,16 @@ public class Juego {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    public ArrayList<Ronda> getRondas() {
+        return rondas;
+    }
+
+    public void setRondas(ArrayList<Ronda> rondas) {
+        this.rondas = rondas;
+    }
+
+    
 
     
     

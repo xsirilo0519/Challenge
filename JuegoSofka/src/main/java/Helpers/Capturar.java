@@ -40,7 +40,7 @@ public class Capturar {
             value=JOptionPane.showInputDialog(message);
             if(value == null || value.equals("")) {
                  JOptionPane.showMessageDialog(null, "Ingrese un valor");
-            }
+            }else{aux=true;}
     }while(!aux);
     return value;
     }
