@@ -5,6 +5,7 @@
  */
 package Class;
 
+import Helpers.Capturar;
 import Helpers.Mapper;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -29,10 +30,12 @@ public class Juego extends Mapper{
     }
     
     public void iniciar(){
-    this.rondas.add(new Ronda());
-    this.rondas.add(new Ronda());
-    this.rondas.add(new Ronda());
-    this.rondas.add(new Ronda());
+
+   
+        this.estado="Jugando";
+        Capturar.MostrarMensaje("Hola "+getJugador().getName()+"\n"
+        +"Vamos a comenzar");
+        
     }
 
     public Jugador getJugador() {

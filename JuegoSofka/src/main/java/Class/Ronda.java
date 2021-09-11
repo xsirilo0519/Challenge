@@ -1,6 +1,8 @@
 
 package Class;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author Sebas
@@ -8,14 +10,34 @@ package Class;
 public class Ronda {
         
     String respuestaUser;
-    Pregunta pregunta;
+    Pregunta preguntaSelect;
+    LinkedList<Pregunta> preguntas;
+    int nivel;
 
-    public Ronda() {
-        
-        this.pregunta = new Pregunta();
+    public Ronda(int nivel) {
+        this.preguntas= new LinkedList<Pregunta>();
+        this.nivel=nivel;
     }
     
-        
+    public Ronda(int nivel,LinkedList<Pregunta> ListaPreguntas) {
+        this.preguntas= ListaPreguntas;
+        this.nivel=nivel;
+    }
+    
+    private void Pick(){
+        if(!getPreguntas().isEmpty()){
+            int max = getPreguntas().size()-1;
+            int min = 0;
+            int range = max - min;
+            int rand = (int)(Math.random() * range) + min;
+            setPreguntaSelect(getPreguntas().get(rand));
+        } 
+    }
+    @Override 
+    public String toString(){
+    return "Nivel "+this.nivel;
+    }
+    
     public String getRespuestaUser() {
         return respuestaUser;
     }
@@ -24,8 +46,20 @@ public class Ronda {
         this.respuestaUser = respuestaUser;
     }
 
-    public Pregunta getPregunta() {
-        return pregunta;
+    public void setPreguntaSelect(Pregunta preguntaSelect) {
+        this.preguntaSelect = preguntaSelect;
     }
+    
+    
+    
+    public Pregunta getPreguntaSelect() {
+        return preguntaSelect;
+    }
+
+    public LinkedList<Pregunta> getPreguntas() {
+        return preguntas;
+    }
+
+    
     
 }

@@ -8,7 +8,8 @@ package Sofka;
 import Class.Juego;
 import Class.Jugador;
 import Connection.ConnectionFireBase;
-import static Connection.ConnectionFireBase.db;
+import Helpers.Capturar;
+import Helpers.Data;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.DocumentReference;
@@ -26,21 +27,37 @@ import javax.swing.JOptionPane;
 public class Main {
         public static void main(String args[]) {
             
-            /*Jugador jugador = new Jugador();
+            int select;
             
-            Juego juego=new Juego(jugador);*/
-            try{
+            Capturar.MostrarMensaje("Bievenido");
             ConnectionFireBase.conecction();
-            }catch(Exception e){
+            do{
+            select= Capturar.CapturarEntero("Ingrese un numero:\n "
+            + "1 Iniciar Juego\n "
+            + "2 Ver historico\n "
+            + "0 Salir");
+             
+                if(select==1){
+                    /*Jugador jugador = new Jugador();
+                    Juego juego=new Juego(jugador);
+                    juego.iniciar();*/
+                    Data.getRondas();
+                }else{
+                    if(select==2){
             
-            }
+                    }
+                }
+            }while(select!=0);
+            
+            
+            
             /*String uuid=java.util.UUID.randomUUID().toString();
 
             DocumentReference docref= ConnectionFireBase.db.collection("Juegos").document(uuid);
             ApiFuture<WriteResult> result =docref.set(juego.toMap());
             try{
             System.out.print(result.get().getUpdateTime());
-            }catch(Exception e){}*/
+            }catch(Exception e){}
 
             try{
                 LinkedList<Juego> ListaJuegos = new LinkedList<Juego>();
@@ -59,7 +76,7 @@ public class Main {
             }catch(Exception e){
                 System.out.print(e.toString());
                 
-            }
+            }*/
             
 
     }

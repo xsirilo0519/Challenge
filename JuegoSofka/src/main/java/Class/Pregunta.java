@@ -5,6 +5,8 @@
  */
 package Class;
 
+import java.util.List;
+
 /**
  *
  * @author Sebas
@@ -12,15 +14,15 @@ package Class;
 public class Pregunta {
     
     String enunciado;
-    String[] opcions;
-    String respuesta;
+    List<String> opcions;
+    int respuesta;
     int puntaje;
 
-    public Pregunta() {
-        this.enunciado = "¿Que es java?";
-        this.opcions= new String[4];
-        this.respuesta = "Lenguaje de programacion";
-        this.puntaje = 100;
+    public Pregunta(String enunciado,int puntos,int respuesta,List<String> opcions) {
+        this.enunciado = enunciado;
+        this.opcions= opcions;
+        this.respuesta = respuesta;
+        this.puntaje = puntos;
     }
 
     
@@ -29,14 +31,21 @@ public class Pregunta {
         return enunciado;
     }
 
-
-    public String getRespuesta() {
-        return respuesta;
-    }
-
+    
     public int getPuntaje() {
         return puntaje;
     }
+
+    public List<String> getOpcions() {
+        return opcions;
+    }
+    
+    @Override
+    public String toString(){
+    return getEnunciado()+"\n"+getOpcions().toString()+"\n";
+    }
+    
+    
     
     
     

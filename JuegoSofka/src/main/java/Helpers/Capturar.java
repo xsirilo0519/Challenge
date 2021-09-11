@@ -36,13 +36,19 @@ public class Capturar {
     public static String CapturarString(String message){
     String value="";
     boolean aux=false;
-    do{     
+        do{     
             value=JOptionPane.showInputDialog(message);
             if(value == null || value.equals("")) {
                  JOptionPane.showMessageDialog(null, "Ingrese un valor");
             }else{aux=true;}
-    }while(!aux);
+        }while(!aux);
     return value;
+    }
+    
+     public static void MostrarMensaje(String message){
+
+        JOptionPane.showMessageDialog(null, message);
+
     }
     
 }

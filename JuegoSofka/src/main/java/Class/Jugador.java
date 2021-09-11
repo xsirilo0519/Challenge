@@ -19,7 +19,7 @@ public class Jugador extends Mapper{
     int Document;
        public Jugador(String Name,int Document) {
        this.Name=Name;
-       this.Document=Document ;
+       this.Document=Document;
     }
     public Jugador() {
        this.Name= Capturar.CapturarString("Ingrese su nombre");

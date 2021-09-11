@@ -5,6 +5,7 @@
  */
 package Connection;
 
+import Helpers.Capturar;
 import com.google.api.core.ApiFuture;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.cloud.firestore.DocumentReference;
@@ -23,18 +24,24 @@ import java.io.IOException;
  */
 public class ConnectionFireBase {
     
-    public static Firestore db;
-    public static void conecction() throws FileNotFoundException, IOException{
-    
-FileInputStream serviceAccount =
-  new FileInputStream("game-58.json");
+    static Firestore db;
+    public static void conecction() {
+        try{
+        FileInputStream serviceAccount =new FileInputStream("game-58.json");
+        FirebaseOptions options = new FirebaseOptions.Builder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
 
-FirebaseOptions options = new FirebaseOptions.Builder()
-  .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-  .build();
-
-FirebaseApp.initializeApp(options);
-db=FirestoreClient.getFirestore();
-
+        FirebaseApp.initializeApp(options);
+        
+        db=FirestoreClient.getFirestore();
+        }catch(Exception e){
+            Capturar.MostrarMensaje("Problemas con la conexion:"+e.getMessage());
+        }
     }
+
+    public static Firestore getInstance() {
+        return db;
+    }
+    
 }
