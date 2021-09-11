@@ -5,21 +5,27 @@
  */
 package Class;
 
-import java.util.ArrayList;
+import Helpers.Mapper;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 /**
  *
  * @author Sebas
  */
-public class Juego {
+public class Juego extends Mapper{
 
     double acumulado;
     String estado;
     Jugador jugador;
-    ArrayList<Ronda> rondas = new ArrayList<Ronda>();
+    LinkedList<Ronda> rondas = new LinkedList<Ronda>();
     
     public Juego(Jugador jugador) {
        this.jugador=jugador;
+    }
+
+    public Juego() {
+       ; //To change body of generated methods, choose Tools | Templates.
     }
     
     public void iniciar(){
@@ -55,12 +61,21 @@ public class Juego {
         this.estado = estado;
     }
 
-    public ArrayList<Ronda> getRondas() {
+    public LinkedList<Ronda> getRondas() {
         return rondas;
     }
 
-    public void setRondas(ArrayList<Ronda> rondas) {
+    public void setRondas(LinkedList<Ronda> rondas) {
         this.rondas = rondas;
+    }
+
+    @Override
+    public HashMap toMap() {
+        HashMap<String, Object> Juego= new HashMap<>();
+        Juego.put("Acumulado", this.acumulado);
+        Juego.put("Estado", this.estado);
+        Juego.put("Jugador", this.jugador.toMap());
+        return Juego;
     }
 
     

@@ -12,19 +12,13 @@ package Class;
 public class Pregunta {
     
     String enunciado;
-    String opcion1;
-    String opcion2;
-    String opcion3;
-    String opcion4;
+    String[] opcions;
     String respuesta;
     int puntaje;
 
     public Pregunta() {
         this.enunciado = "¿Que es java?";
-        this.opcion1 = "Lenguaje de programacion";
-        this.opcion2 = "Un café";
-        this.opcion3 = "Nada";
-        this.opcion4 = "Lo que sea";
+        this.opcions= new String[4];
         this.respuesta = "Lenguaje de programacion";
         this.puntaje = 100;
     }
@@ -35,21 +29,6 @@ public class Pregunta {
         return enunciado;
     }
 
-    public String getOpcion1() {
-        return opcion1;
-    }
-
-    public String getOpcion2() {
-        return opcion2;
-    }
-
-    public String getOpcion3() {
-        return opcion3;
-    }
-
-    public String getOpcion4() {
-        return opcion4;
-    }
 
     public String getRespuesta() {
         return respuesta;
