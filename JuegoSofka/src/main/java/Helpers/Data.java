@@ -13,7 +13,6 @@ import Connection.ConnectionFireBase;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.CollectionReference;
 import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QuerySnapshot;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -62,8 +61,8 @@ public class Data {
                     List<HashMap> preguntas= (List<HashMap>)document.get("Preguntas");
                     int level=document.getLong("Nivel").intValue();
                     LinkedList<Pregunta> ListaP = new LinkedList<Pregunta>();
-                    preguntas.forEach(p -> {
-                        ListaP.add(new Pregunta(p.get("Enunciado").toString(),((Long)p.get("Puntos")).intValue(),((Long)p.get("Respuesta")).intValue(),(List<String>)p.get("Opciones")));
+                    preguntas.forEach(pregunta -> {
+                        ListaP.add(new Pregunta(pregunta.get("Enunciado").toString(),((Long)pregunta.get("Puntos")).intValue(),((Long)pregunta.get("Respuesta")).intValue(),(List<String>)pregunta.get("Opciones")));
                     });
                     Ronda r = new Ronda(level,ListaP);
                     ListaRondas.add(r);

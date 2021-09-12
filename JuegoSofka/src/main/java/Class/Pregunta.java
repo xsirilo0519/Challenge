@@ -14,13 +14,13 @@ import java.util.List;
 public class Pregunta {
     
     String enunciado;
-    List<String> opcions;
+    List<String> opciones;
     int respuesta;
     int puntaje;
 
-    public Pregunta(String enunciado,int puntos,int respuesta,List<String> opcions) {
+    public Pregunta(String enunciado,int puntos,int respuesta,List<String> opciones) {
         this.enunciado = enunciado;
-        this.opcions= opcions;
+        this.opciones= opciones;
         this.respuesta = respuesta;
         this.puntaje = puntos;
     }
@@ -33,8 +33,8 @@ public class Pregunta {
         return puntaje;
     }
 
-    public List<String> getOpcions() {
-        return opcions;
+    public List<String> getOpciones() {
+        return opciones;
     }
 
     public int getRespuesta() {
@@ -47,11 +47,11 @@ public class Pregunta {
     
     @Override
     public String toString(){
-        String opc="";
-        for(int i=0;i<getOpcions().size();i++){
-            opc=opc+"Opcion "+(i+1)+": "+getOpcions().get(i)+"\n";
+        String opcionStr="";
+        for(int i=0;i<getOpciones().size();i++){
+            opcionStr=opcionStr+"Opcion "+(i+1)+": "+getOpciones().get(i)+"\n";
         }
-    return       "Pregunta: "+getEnunciado()+"\nIngrese el numero de la opcion correcta:\n"+opc+"\n";
+    return       "Pregunta: "+getEnunciado()+"\nIngrese el numero de la opcion correcta:\n"+opcionStr+"\n";
     }
 
 }

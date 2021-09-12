@@ -24,37 +24,58 @@ public class Juego extends Mapper{
     public Juego(Jugador jugador) {
        this.jugador=jugador;
     }
-
-    public Juego() {
-       ; //To change body of generated methods, choose Tools | Templates.
-    }
     
     public void iniciar(){
+        int opcion;
         this.estado="Jugando";
         Capturar.MostrarMensaje("Hola "+getJugador().getName()+"\n"
         +"Vamos a comenzar");
       
         for(int i=1;i<3;i++){
             final int cont=i;
-            Ronda h=rondas.stream().filter(r->r.nivel==cont).findFirst().orElse(null);
-            if(h!=null){
+            Ronda rondaFiltrada=rondas.stream().filter(r->r.nivel==cont).findFirst().orElse(null);
+            if(rondaFiltrada!=null){
                 
-                h.iniciar();
+                rondaFiltrada.iniciar();
             
-                if(h.getRespuestaUser()==h.getPreguntaSelect().getRespuesta()){
-                    setAcumulado(this.getAcumulado()+h.getPreguntaSelect().getPuntaje());
+                if(rondaFiltrada.getRespuestaUser()==rondaFiltrada.getPreguntaSelect().getRespuesta()){
+                    setAcumulado(this.getAcumulado()+rondaFiltrada.getPreguntaSelect().getPuntaje());
                     Capturar.MostrarMensaje("Respuesta correcta\n"
                     +"Su puntaje es: "+getAcumulado());
+                    
+                    if(rondaFiltrada.getNivel()!=2){
+                        do{        
+                            opcion=Capturar.CapturarEntero("Desea continuar o quiere retirarse:\n"
+                                + "1 Continuar\n"
+                                + "0 Retirarse");
+                            
+                        }while(!(opcion>=0 && opcion<=1));
+                        if(opcion==0){
+                            setEstado("Se retiró");
+                            break;
+                        }
+                    }else{
+                    setEstado("Ganó el juego");
+                    Capturar.MostrarMensaje("Felicidades Ganó el Juego!");
+                    }
+                    
                 }else{ 
                     setAcumulado(0);
-                    this.setEstado("Perdio");
+                    setEstado("Perdió");
                     Capturar.MostrarMensaje("Respuesta incorrecta\n"
                     +"Su puntaje es: "+getAcumulado());
+                    break;
                 }
             }
         }
+        Capturar.MostrarMensaje(Mensaje());  
     }
 
+    public String Mensaje(){
+    return getJugador().getName()+"\nUsted "+getEstado()
+            +"\nSu puntaje fue: "+getAcumulado();
+    }
+    
     public Jugador getJugador() {
         return jugador;
     }
@@ -89,8 +110,6 @@ public class Juego extends Mapper{
         this.rondas = rondas;
     }
     
-    
-
     @Override
     public HashMap toMap() {
         HashMap<String, Object> Juego= new HashMap<>();

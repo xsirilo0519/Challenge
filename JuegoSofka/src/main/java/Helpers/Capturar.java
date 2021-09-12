@@ -15,18 +15,18 @@ public class Capturar {
    
     
     public static int CapturarEntero(String message){
-    String value="";
+    String valor="";
     boolean aux=false;
     int Entero=0;
         do{    
-            value=JOptionPane.showInputDialog(message);
-            if(value == null || value.equals("")) {
-                 JOptionPane.showMessageDialog(null, "Ingrese un valor");
+            valor=JOptionPane.showInputDialog(null,message,"Juego",JOptionPane.QUESTION_MESSAGE);
+            if(valor == null || valor.equals("")) {
+                 JOptionPane.showMessageDialog(null, "Ingrese un valor","Juego",0);
             }else{    try{
-               Entero=Integer.parseInt(value);
+               Entero=Integer.parseInt(valor);
                aux=true;
             }catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Ingrese un numero");
+                JOptionPane.showMessageDialog(null, "Ingrese un numero","Juego",0);
             }}
         }while(!aux);
     return Entero ;
@@ -34,20 +34,20 @@ public class Capturar {
    
     
     public static String CapturarString(String message){
-    String value="";
+    String valor="";
     boolean aux=false;
         do{     
-            value=JOptionPane.showInputDialog(message);
-            if(value == null || value.equals("")) {
-                 JOptionPane.showMessageDialog(null, "Ingrese un valor");
+            valor=JOptionPane.showInputDialog(null,message,"Juego",JOptionPane.QUESTION_MESSAGE);
+            if(valor == null || valor.equals("")) {
+                 JOptionPane.showMessageDialog(null, "Ingrese un valor","Juego",0);
             }else{aux=true;}
         }while(!aux);
-    return value;
+    return valor;
     }
     
      public static void MostrarMensaje(String message){
 
-        JOptionPane.showMessageDialog(null, message);
+        JOptionPane.showMessageDialog(null, message,"Juego",1);
 
     }
     

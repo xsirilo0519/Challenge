@@ -15,7 +15,6 @@ public class Ronda {
     LinkedList<Pregunta> preguntas;
     int nivel;
 
-    
     public Ronda(int nivel,LinkedList<Pregunta> ListaPreguntas) {
         this.preguntas= ListaPreguntas;
         this.nivel=nivel;
@@ -23,23 +22,15 @@ public class Ronda {
     
     public void iniciar(){
         Pick();
-        setRespuestaUser(Capturar.CapturarEntero("Nivel: "+this.nivel+"\n"+
+        setRespuestaUser(Capturar.CapturarEntero("Nivel: "+getNivel()+"\n"+
                this.preguntaSelect.toString())-1);
-        
     }
     
     private void Pick(){
         if(!getPreguntas().isEmpty()){
-            int max = getPreguntas().size();
-            int min = 0;
-            int range = max - min;
-            int rand = (int)(Math.random() * range) + min;
+            int rand = (int)(Math.random() * getPreguntas().size());
             setPreguntaSelect(getPreguntas().get(rand));
         } 
-    }
-    @Override 
-    public String toString(){
-    return "Nivel "+this.nivel;
     }
 
     public int getNivel() {
@@ -61,9 +52,7 @@ public class Ronda {
     public void setPreguntaSelect(Pregunta preguntaSelect) {
         this.preguntaSelect = preguntaSelect;
     }
-    
-    
-    
+   
     public Pregunta getPreguntaSelect() {
         return preguntaSelect;
     }
@@ -72,6 +61,4 @@ public class Ronda {
         return preguntas;
     }
 
-    
-    
 }

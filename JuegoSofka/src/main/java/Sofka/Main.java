@@ -7,9 +7,11 @@ package Sofka;
 
 import Class.Juego;
 import Class.Jugador;
+import Class.Ronda;
 import Connection.ConnectionFireBase;
 import Helpers.Capturar;
 import Helpers.Data;
+import java.util.LinkedList;
 
 /**
  *
@@ -20,8 +22,9 @@ public class Main {
             
             int select;
             
-            Capturar.MostrarMensaje("Bievenido");
             ConnectionFireBase.conecction();
+            LinkedList<Ronda> ListRondas=Data.getRondas();
+            Capturar.MostrarMensaje("Bievenido");
             do{
             select= Capturar.CapturarEntero("Ingrese un numero:\n "
             + "1 Iniciar Juego\n "
@@ -31,7 +34,7 @@ public class Main {
                 if(select==1){
                     Jugador jugador = new Jugador();
                     Juego juego=new Juego(jugador);
-                    juego.setRondas(Data.getRondas());
+                    juego.setRondas(ListRondas);
                     juego.iniciar();
                 }else{
                     if(select==2){
