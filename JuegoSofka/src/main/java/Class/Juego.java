@@ -9,7 +9,6 @@ import Helpers.Capturar;
 import Helpers.Mapper;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**
@@ -19,7 +18,7 @@ import java.util.stream.Collectors;
 public class Juego extends Mapper{
 
     int acumulado=0;
-    String estado;
+    String estado="";
     Jugador jugador;
     LinkedList<Ronda> rondas = new LinkedList<Ronda>();
     
@@ -33,12 +32,16 @@ public class Juego extends Mapper{
     
     public void iniciar(){
         int opcion;
+        int i;
         this.estado="Jugando";
         Capturar.MostrarMensaje("Hola "+getJugador().getName()+"\n"
         +"Vamos a comenzar");
-        for(int i=1;i<3;i++){
+        for(i=0;i<2;i++){
+            getRondas().get(i).Pick();  
+        }
+        for(i=1;i<3;i++){
             final int cont=i;
-            Ronda rondaFiltrada=rondas.stream().filter(r->r.nivel==cont).findFirst().orElse(null);
+            Ronda rondaFiltrada=getRondas().stream().filter(r->r.getNivel()==cont).findFirst().orElse(null);
             if(rondaFiltrada!=null){
                 
                 rondaFiltrada.iniciar();
@@ -121,7 +124,7 @@ public class Juego extends Mapper{
         Juego.put("Acumulado", this.getAcumulado());
         Juego.put("Estado", this.getEstado());
         Juego.put("Jugador", this.getJugador().toMap());
-        Juego.put("Rondas", this.getRondas().stream().collect(Collectors.toMap(x->x.getNivel(), x->x.toMap())));
+        Juego.put("Rondas", this.getRondas().stream().collect(Collectors.toMap(x->Integer.toString(x.getNivel()), x->x.toMap())));
         return Juego;
     }
 

@@ -12,10 +12,10 @@ import java.util.LinkedList;
  */
 public class Ronda extends Mapper {
         
-    int respuestaUser;
+    int respuestaUser=100;
     Pregunta preguntaSelect;
     LinkedList<Pregunta> preguntas;
-    int nivel;
+    int nivel=0;
 
     public Ronda(int nivel,LinkedList<Pregunta> ListaPreguntas) {
         this.preguntas= ListaPreguntas;
@@ -23,15 +23,15 @@ public class Ronda extends Mapper {
     }
     
     public void iniciar(){
-        Pick();
         setRespuestaUser(Capturar.CapturarEntero("Nivel: "+getNivel()+"\n"+
                this.preguntaSelect.toString())-1);
     }
     
-    private void Pick(){
+    public void Pick(){
         if(!getPreguntas().isEmpty()){
             int rand = (int)(Math.random() * getPreguntas().size());
             setPreguntaSelect(getPreguntas().get(rand));
+            setRespuestaUser(100);
         } 
     }
 

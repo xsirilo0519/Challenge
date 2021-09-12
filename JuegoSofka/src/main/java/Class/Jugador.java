@@ -15,8 +15,8 @@ import java.util.HashMap;
  */
 public class Jugador extends Mapper{
     
-    String Name;
-    int Document;
+    String Name="";
+    int Document=0;
     
     public Jugador(String Name,int Document) {
        this.Name=Name;

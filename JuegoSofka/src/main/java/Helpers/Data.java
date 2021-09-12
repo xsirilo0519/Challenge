@@ -12,8 +12,11 @@ import Class.Ronda;
 import Connection.ConnectionFireBase;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.CollectionReference;
+import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QuerySnapshot;
+import com.google.cloud.firestore.WriteResult;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -73,6 +76,17 @@ public class Data {
                 System.out.print(e.getMessage());
                 return ListaRondas;
             }
+    }
+    
+    public static void Guardar(Juego juego ,Firestore db ){
+        try{
+            String uuid=java.util.UUID.randomUUID().toString();
+            DocumentReference docref= db.collection("Juegos").document(uuid);
+            ApiFuture<WriteResult> result =docref.set(juego.toMap());
+            System.out.print(result.get().getUpdateTime());
+        }catch(Exception e){
+            System.out.print("\nError: -"+e.getMessage().toString());
+        }
     }
     
 }

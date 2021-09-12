@@ -13,6 +13,7 @@ import Helpers.Capturar;
 import Helpers.Data;
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.WriteResult;
 import java.util.LinkedList;
 
@@ -40,8 +41,7 @@ public class Main {
                     juego=new Juego(jugador);
                     juego.setRondas(ListRondas);
                     juego.iniciar();
-                    String uuid=java.util.UUID.randomUUID().toString();
-                    System.out.print(juego.toMap().toString());
+                    Data.Guardar(juego,ConnectionFireBase.getInstance());
                 }else{
                     if(select==2){
             
@@ -50,17 +50,6 @@ public class Main {
 
             }while(select!=0);
             
-            
-            String uuid=java.util.UUID.randomUUID().toString();
-            
-    
-            /*DocumentReference docref= ConnectionFireBase.getInstance().collection("Juegos").document(uuid);
-            ApiFuture<WriteResult> result =docref.set(juego.toMap());
-            try{
-            System.out.print(result.get().getUpdateTime());
-            }catch(Exception e){
-            System.out.print(e.getMessage());
-            }*/
 /*
             try{
                 LinkedList<Juego> ListaJuegos = new LinkedList<Juego>();
@@ -83,4 +72,5 @@ public class Main {
             
 
     }
+
 }
