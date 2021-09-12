@@ -20,6 +20,7 @@ public class Juego extends Mapper{
     int acumulado=0;
     String estado="";
     Jugador jugador;
+    int ronda=0;
     LinkedList<Ronda> rondas = new LinkedList<Ronda>();
     
     public Juego(Jugador jugador) {
@@ -48,6 +49,7 @@ public class Juego extends Mapper{
             
                 if(rondaFiltrada.getRespuestaUser()==rondaFiltrada.getPreguntaSelect().getRespuesta()){
                     setAcumulado(this.getAcumulado()+rondaFiltrada.getPreguntaSelect().getPuntaje());
+                    setRonda(rondaFiltrada.getNivel());
                     Capturar.MostrarMensaje("Respuesta correcta\n"
                     +"Su puntaje es: "+getAcumulado());
                     
@@ -68,6 +70,7 @@ public class Juego extends Mapper{
                     }
                     
                 }else{ 
+                    setRonda(rondaFiltrada.getNivel());
                     setAcumulado(0);
                     setEstado("Perdió");
                     Capturar.MostrarMensaje("Respuesta incorrecta\n"
@@ -82,6 +85,14 @@ public class Juego extends Mapper{
     public String Mensaje(){
     return getJugador().getName()+"\nUsted "+getEstado()
             +"\nSu puntaje fue: "+getAcumulado();
+    }
+
+    public int getRonda() {
+        return ronda;
+    }
+
+    public void setRonda(int ronda) {
+        this.ronda = ronda;
     }
     
     public Jugador getJugador() {
@@ -123,6 +134,7 @@ public class Juego extends Mapper{
         HashMap<String, Object> Juego= new HashMap<>();
         Juego.put("Acumulado", this.getAcumulado());
         Juego.put("Estado", this.getEstado());
+        Juego.put("Ronda", this.getRonda());
         Juego.put("Jugador", this.getJugador().toMap());
         Juego.put("Rondas", this.getRondas().stream().collect(Collectors.toMap(x->Integer.toString(x.getNivel()), x->x.toMap())));
         return Juego;

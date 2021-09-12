@@ -11,11 +11,9 @@ import Class.Ronda;
 import Connection.ConnectionFireBase;
 import Helpers.Capturar;
 import Helpers.Data;
-import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.Firestore;
-import com.google.cloud.firestore.WriteResult;
+import Helpers.TablaHistory;
 import java.util.LinkedList;
+import javax.swing.JFrame;
 
 /**
  *
@@ -28,7 +26,7 @@ public class Main {
             Juego juego;
             
             ConnectionFireBase.conecction();
-            //LinkedList<Ronda> ListRondas=Data.getRondas();
+            LinkedList<Ronda> ListRondas=Data.getRondas();
             Capturar.MostrarMensaje("Bievenido");
             do{
             select= Capturar.CapturarEntero("Ingrese un numero:\n "
@@ -37,40 +35,31 @@ public class Main {
             + "0 Salir");
              
                 if(select==1){
-                    /*Jugador jugador = new Jugador();
+                    Jugador jugador = new Jugador();
                     juego=new Juego(jugador);
                     juego.setRondas(ListRondas);
                     juego.iniciar();
-                    Data.Guardar(juego,ConnectionFireBase.getInstance());*/
+                    Data.Guardar(juego,ConnectionFireBase.getInstance());
                 }else{
                     if(select==2){
-                        Data.getJuego();
+                         int opc= Capturar.CapturarEntero("Esta opción cerrara el juego:\n "
+                                +"¿Desea continuar?\n"
+                                + "1 Si\n "
+                                + "0 No");
+                         if(opc==1){
+                            Data.getJuego();
+                            select=0;
+                            TablaHistory tabla=new TablaHistory(Data.getJuego());
+                            tabla.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                            tabla.setVisible(true);
+                            tabla.toFront();
+                            tabla.setAlwaysOnTop(true);
+                            tabla.requestFocus();
+                         }
                     }
                 }
 
             }while(select!=0);
-            
-/*
-            try{
-                LinkedList<Juego> ListaJuegos = new LinkedList<Juego>();
-                CollectionReference cnombres=ConnectionFireBase.db.collection("Juegos");
-                ApiFuture<QuerySnapshot> query=cnombres.get();
-                for(DocumentSnapshot document: query.get().getDocuments()){
-                HashMap<String, Object> JugadorTm= (HashMap)document.get("Jugador");
-                Juego juego1 = new Juego(new Jugador(JugadorTm.get("Name").toString(),Integer.parseInt(JugadorTm.get("Document").toString())));
-                
-                ListaJuegos.add(juego1);
-                }
-    
-                for (int i=0; i<ListaJuegos.size();i++){
-                    System.out.print("ff\n"+ListaJuegos.get(i).getJugador().getName());
-                }
-            }catch(Exception e){
-                System.out.print(e.toString());
-                
-            }*/
-            
-
     }
 
 }

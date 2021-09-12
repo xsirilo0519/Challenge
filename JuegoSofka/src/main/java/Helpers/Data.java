@@ -47,6 +47,9 @@ public class Data {
                         Ronda ronda=new Ronda(((Long)Hronda.get("Nivel")).intValue(),pregunta,((Long)Hronda.get("RespuestaUser")).intValue());
                         ListaR.add(ronda);
                     }
+                    juego.setAcumulado(document.getLong("Acumulado").intValue());
+                    juego.setEstado(document.getString("Estado"));
+                    juego.setRonda(document.getLong("Ronda").intValue());
                     juego.setRondas(ListaR);
                     ListaJuegos.add(juego);
                 }
