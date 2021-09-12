@@ -38,15 +38,13 @@ public class Data {
                     HashMap<String, Object> JugadorTm= (HashMap)document.get("Jugador");
                     Juego juego = new Juego(new Jugador(JugadorTm.get("Name").toString(),Integer.parseInt(JugadorTm.get("Document").toString())));
                     LinkedList<Ronda> ListaR = new LinkedList<Ronda>();
-                    
-                     HashMap<String, Object> Hindices= (HashMap)document.get("Rondas");
+                    HashMap<String, Object> Hindices= (HashMap)document.get("Rondas");
                     for(int i=0;i<Hindices.size();i++){
                     
                         HashMap<String, Object> Hronda=(HashMap)Hindices.get(Integer.toString(i+1));
                         HashMap<String, Object> Hpregunta=(HashMap)Hronda.get("PreguntaSelect");
                         Pregunta pregunta=new Pregunta(Hpregunta.get("Enunciado").toString(),((Long)Hpregunta.get("Puntaje")).intValue(),((Long)Hpregunta.get("Respuesta")).intValue(),(List<String>)Hpregunta.get("Opciones"));
                         Ronda ronda=new Ronda(((Long)Hronda.get("Nivel")).intValue(),pregunta,((Long)Hronda.get("RespuestaUser")).intValue());
-
                         ListaR.add(ronda);
                     }
                     juego.setRondas(ListaR);
