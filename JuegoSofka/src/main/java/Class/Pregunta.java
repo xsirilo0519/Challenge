@@ -26,7 +26,8 @@ public class Pregunta extends Mapper{
         this.respuesta = respuesta;
         this.puntaje = puntos;
     }
-    
+
+
     public String getEnunciado() {
         return enunciado;
     }

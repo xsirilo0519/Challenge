@@ -36,17 +36,25 @@ public class Data {
                 
                 for(DocumentSnapshot document: query.get().getDocuments()){
                     HashMap<String, Object> JugadorTm= (HashMap)document.get("Jugador");
-                    Juego juego1 = new Juego(new Jugador(JugadorTm.get("Name").toString(),Integer.parseInt(JugadorTm.get("Document").toString())));
-                
-                    ListaJuegos.add(juego1);
-                }
-    
-                for (int i=0; i<ListaJuegos.size();i++){
-                    System.out.print("ff\n"+ListaJuegos.get(i).getJugador().getName());
+                    Juego juego = new Juego(new Jugador(JugadorTm.get("Name").toString(),Integer.parseInt(JugadorTm.get("Document").toString())));
+                    LinkedList<Ronda> ListaR = new LinkedList<Ronda>();
+                    
+                     HashMap<String, Object> Hindices= (HashMap)document.get("Rondas");
+                    for(int i=0;i<Hindices.size();i++){
+                    
+                        HashMap<String, Object> Hronda=(HashMap)Hindices.get(Integer.toString(i+1));
+                        HashMap<String, Object> Hpregunta=(HashMap)Hronda.get("PreguntaSelect");
+                        Pregunta pregunta=new Pregunta(Hpregunta.get("Enunciado").toString(),((Long)Hpregunta.get("Puntaje")).intValue(),((Long)Hpregunta.get("Respuesta")).intValue(),(List<String>)Hpregunta.get("Opciones"));
+                        Ronda ronda=new Ronda(((Long)Hronda.get("Nivel")).intValue(),pregunta,((Long)Hronda.get("RespuestaUser")).intValue());
+
+                        ListaR.add(ronda);
+                    }
+                    juego.setRondas(ListaR);
+                    ListaJuegos.add(juego);
                 }
                 return ListaJuegos;
             }catch(Exception e){
-                System.out.print(e.toString());
+                System.out.print("\nError: -"+e.toString());
                 return ListaJuegos;
                 
             }

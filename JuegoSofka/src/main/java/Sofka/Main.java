@@ -28,7 +28,7 @@ public class Main {
             Juego juego;
             
             ConnectionFireBase.conecction();
-            LinkedList<Ronda> ListRondas=Data.getRondas();
+            //LinkedList<Ronda> ListRondas=Data.getRondas();
             Capturar.MostrarMensaje("Bievenido");
             do{
             select= Capturar.CapturarEntero("Ingrese un numero:\n "
@@ -37,14 +37,14 @@ public class Main {
             + "0 Salir");
              
                 if(select==1){
-                    Jugador jugador = new Jugador();
+                    /*Jugador jugador = new Jugador();
                     juego=new Juego(jugador);
                     juego.setRondas(ListRondas);
                     juego.iniciar();
-                    Data.Guardar(juego,ConnectionFireBase.getInstance());
+                    Data.Guardar(juego,ConnectionFireBase.getInstance());*/
                 }else{
                     if(select==2){
-            
+                        Data.getJuego();
                     }
                 }
 

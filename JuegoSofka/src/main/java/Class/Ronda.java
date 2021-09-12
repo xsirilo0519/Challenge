@@ -16,7 +16,13 @@ public class Ronda extends Mapper {
     Pregunta preguntaSelect;
     LinkedList<Pregunta> preguntas;
     int nivel=0;
-
+    
+    public Ronda(int nivel,Pregunta preguntaSelect ,int respuestaUser) {
+        this.preguntaSelect= preguntaSelect;
+        this.nivel=nivel;
+        this.respuestaUser=respuestaUser;
+        
+    }
     public Ronda(int nivel,LinkedList<Pregunta> ListaPreguntas) {
         this.preguntas= ListaPreguntas;
         this.nivel=nivel;
