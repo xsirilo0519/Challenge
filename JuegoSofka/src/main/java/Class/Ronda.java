@@ -2,13 +2,15 @@
 package Class;
 
 import Helpers.Capturar;
+import Helpers.Mapper;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
  *
  * @author Sebas
  */
-public class Ronda {
+public class Ronda extends Mapper {
         
     int respuestaUser;
     Pregunta preguntaSelect;
@@ -59,6 +61,15 @@ public class Ronda {
 
     public LinkedList<Pregunta> getPreguntas() {
         return preguntas;
+    }
+    
+    @Override
+    public HashMap toMap() {
+        HashMap<String, Object> Rondas= new HashMap<>();
+        Rondas.put("Nivel", this.getNivel());
+        Rondas.put("RespuestaUser", this.getRespuestaUser());
+        Rondas.put("PreguntaSelect", this.getPreguntaSelect().toMap());
+        return Rondas;
     }
 
 }

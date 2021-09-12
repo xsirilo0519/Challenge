@@ -9,6 +9,8 @@ import Helpers.Capturar;
 import Helpers.Mapper;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -24,13 +26,16 @@ public class Juego extends Mapper{
     public Juego(Jugador jugador) {
        this.jugador=jugador;
     }
+
+    public Juego() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     public void iniciar(){
         int opcion;
         this.estado="Jugando";
         Capturar.MostrarMensaje("Hola "+getJugador().getName()+"\n"
         +"Vamos a comenzar");
-      
         for(int i=1;i<3;i++){
             final int cont=i;
             Ronda rondaFiltrada=rondas.stream().filter(r->r.nivel==cont).findFirst().orElse(null);
@@ -113,9 +118,10 @@ public class Juego extends Mapper{
     @Override
     public HashMap toMap() {
         HashMap<String, Object> Juego= new HashMap<>();
-        Juego.put("Acumulado", this.acumulado);
-        Juego.put("Estado", this.estado);
-        Juego.put("Jugador", this.jugador.toMap());
+        Juego.put("Acumulado", this.getAcumulado());
+        Juego.put("Estado", this.getEstado());
+        Juego.put("Jugador", this.getJugador().toMap());
+        Juego.put("Rondas", this.getRondas().stream().collect(Collectors.toMap(x->x.getNivel(), x->x.toMap())));
         return Juego;
     }
 

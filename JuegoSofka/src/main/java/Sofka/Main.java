@@ -11,6 +11,9 @@ import Class.Ronda;
 import Connection.ConnectionFireBase;
 import Helpers.Capturar;
 import Helpers.Data;
+import com.google.api.core.ApiFuture;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.WriteResult;
 import java.util.LinkedList;
 
 /**
@@ -21,6 +24,7 @@ public class Main {
         public static void main(String args[]) {
             
             int select;
+            Juego juego;
             
             ConnectionFireBase.conecction();
             LinkedList<Ronda> ListRondas=Data.getRondas();
@@ -33,26 +37,31 @@ public class Main {
              
                 if(select==1){
                     Jugador jugador = new Jugador();
-                    Juego juego=new Juego(jugador);
+                    juego=new Juego(jugador);
                     juego.setRondas(ListRondas);
                     juego.iniciar();
+                    String uuid=java.util.UUID.randomUUID().toString();
+                    System.out.print(juego.toMap().toString());
                 }else{
                     if(select==2){
             
                     }
                 }
+
             }while(select!=0);
             
             
+            String uuid=java.util.UUID.randomUUID().toString();
             
-            /*String uuid=java.util.UUID.randomUUID().toString();
-
-            DocumentReference docref= ConnectionFireBase.db.collection("Juegos").document(uuid);
+    
+            /*DocumentReference docref= ConnectionFireBase.getInstance().collection("Juegos").document(uuid);
             ApiFuture<WriteResult> result =docref.set(juego.toMap());
             try{
             System.out.print(result.get().getUpdateTime());
-            }catch(Exception e){}
-
+            }catch(Exception e){
+            System.out.print(e.getMessage());
+            }*/
+/*
             try{
                 LinkedList<Juego> ListaJuegos = new LinkedList<Juego>();
                 CollectionReference cnombres=ConnectionFireBase.db.collection("Juegos");

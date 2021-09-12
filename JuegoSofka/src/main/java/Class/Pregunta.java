@@ -5,13 +5,15 @@
  */
 package Class;
 
+import Helpers.Mapper;
+import java.util.HashMap;
 import java.util.List;
 
 /**
  *
  * @author Sebas
  */
-public class Pregunta {
+public class Pregunta extends Mapper{
     
     String enunciado;
     List<String> opciones;
@@ -52,6 +54,16 @@ public class Pregunta {
             opcionStr=opcionStr+"Opcion "+(i+1)+": "+getOpciones().get(i)+"\n";
         }
     return       "Pregunta: "+getEnunciado()+"\nIngrese el numero de la opcion correcta:\n"+opcionStr+"\n";
+    }
+    
+    @Override
+    public HashMap toMap() {
+        HashMap<String, Object> Pregunta= new HashMap<>();
+        Pregunta.put("Enunciado", this.getEnunciado());
+        Pregunta.put("Puntaje", this.getPuntaje());
+        Pregunta.put("Respuesta", this.getRespuesta());
+        Pregunta.put("Opciones", this.getOpciones());
+        return Pregunta;
     }
 
 }
