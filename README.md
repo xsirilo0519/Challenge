@@ -7,11 +7,11 @@ Reto Sofka
 -Se agregaron espacios para poder identificar las respuestas correctas para que se puede completar el juego con facilidad
 
 A continuación les mostrare la línea que se encarga de descargar las dependencias , esta línea está en el archivo pom.xml:
-        "-<dependencies>
+  /*-<dependencies>
         <dependency>
             <groupId>com.google.firebase</groupId>
             <artifactId>firebase-admin</artifactId>
             <version>8.0.0</version>
         </dependency>
-    </dependencies>-"
+    </dependencies>-*/
 
