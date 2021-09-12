@@ -37,10 +37,10 @@ public class Juego extends Mapper{
         this.estado="Jugando";
         Capturar.MostrarMensaje("Hola "+getJugador().getName()+"\n"
         +"Vamos a comenzar");
-        for(i=0;i<2;i++){
+        for(i=0;i<5;i++){
             getRondas().get(i).Pick();  
         }
-        for(i=1;i<3;i++){
+        for(i=1;i<6;i++){
             final int cont=i;
             Ronda rondaFiltrada=getRondas().stream().filter(r->r.getNivel()==cont).findFirst().orElse(null);
             if(rondaFiltrada!=null){
@@ -53,7 +53,7 @@ public class Juego extends Mapper{
                     Capturar.MostrarMensaje("Respuesta correcta\n"
                     +"Su puntaje es: "+getAcumulado());
                     
-                    if(rondaFiltrada.getNivel()!=2){
+                    if(rondaFiltrada.getNivel()!=5){
                         do{        
                             opcion=Capturar.CapturarEntero("Desea continuar o quiere retirarse:\n"
                                 + "1 Continuar\n"
