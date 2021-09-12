@@ -10,15 +10,6 @@ import Class.Jugador;
 import Connection.ConnectionFireBase;
 import Helpers.Capturar;
 import Helpers.Data;
-import com.google.api.core.ApiFuture;
-import com.google.cloud.firestore.CollectionReference;
-import com.google.cloud.firestore.DocumentReference;
-import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.cloud.firestore.QuerySnapshot;
-import com.google.cloud.firestore.WriteResult;
-import java.util.HashMap;
-import java.util.LinkedList;
-import javax.swing.JOptionPane;
 
 /**
  *

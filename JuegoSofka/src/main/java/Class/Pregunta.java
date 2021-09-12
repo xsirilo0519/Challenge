@@ -36,6 +36,14 @@ public class Pregunta {
     public List<String> getOpcions() {
         return opcions;
     }
+
+    public int getRespuesta() {
+        return respuesta;
+    }
+
+    public void setRespuesta(int respuesta) {
+        this.respuesta = respuesta;
+    }
     
     @Override
     public String toString(){

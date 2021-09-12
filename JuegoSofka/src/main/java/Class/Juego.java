@@ -16,7 +16,7 @@ import java.util.LinkedList;
  */
 public class Juego extends Mapper{
 
-    double acumulado;
+    int acumulado=0;
     String estado;
     Jugador jugador;
     LinkedList<Ronda> rondas = new LinkedList<Ronda>();
@@ -38,7 +38,19 @@ public class Juego extends Mapper{
             final int cont=i;
             Ronda h=rondas.stream().filter(r->r.nivel==cont).findFirst().orElse(null);
             if(h!=null){
-            h.iniciar();
+                
+                h.iniciar();
+            
+                if(h.getRespuestaUser()==h.getPreguntaSelect().getRespuesta()){
+                    setAcumulado(this.getAcumulado()+h.getPreguntaSelect().getPuntaje());
+                    Capturar.MostrarMensaje("Respuesta correcta\n"
+                    +"Su puntaje es: "+getAcumulado());
+                }else{ 
+                    setAcumulado(0);
+                    this.setEstado("Perdio");
+                    Capturar.MostrarMensaje("Respuesta incorrecta\n"
+                    +"Su puntaje es: "+getAcumulado());
+                }
             }
         }
     }
@@ -53,11 +65,11 @@ public class Juego extends Mapper{
     
     
     
-    public double getAcumulado() {
+    public int getAcumulado() {
         return acumulado;
     }
 
-    public void setAcumulado(double acumulado) {
+    public void setAcumulado(int acumulado) {
         this.acumulado = acumulado;
     }
 
@@ -76,6 +88,8 @@ public class Juego extends Mapper{
     public void setRondas(LinkedList<Ronda> rondas) {
         this.rondas = rondas;
     }
+    
+    
 
     @Override
     public HashMap toMap() {

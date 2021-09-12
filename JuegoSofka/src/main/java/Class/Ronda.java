@@ -10,15 +10,11 @@ import java.util.LinkedList;
  */
 public class Ronda {
         
-    String respuestaUser;
+    int respuestaUser;
     Pregunta preguntaSelect;
     LinkedList<Pregunta> preguntas;
     int nivel;
 
-    public Ronda(int nivel) {
-        this.preguntas= new LinkedList<Pregunta>();
-        this.nivel=nivel;
-    }
     
     public Ronda(int nivel,LinkedList<Pregunta> ListaPreguntas) {
         this.preguntas= ListaPreguntas;
@@ -27,8 +23,8 @@ public class Ronda {
     
     public void iniciar(){
         Pick();
-        Capturar.CapturarEntero("Nivel: "+this.nivel+"\n"+
-               this.preguntaSelect.toString());
+        setRespuestaUser(Capturar.CapturarEntero("Nivel: "+this.nivel+"\n"+
+               this.preguntaSelect.toString())-1);
         
     }
     
@@ -45,12 +41,20 @@ public class Ronda {
     public String toString(){
     return "Nivel "+this.nivel;
     }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void setNivel(int nivel) {
+        this.nivel = nivel;
+    }
     
-    public String getRespuestaUser() {
+    public int getRespuestaUser() {
         return respuestaUser;
     }
 
-    public void setRespuestaUser(String respuestaUser) {
+    public void setRespuestaUser(int respuestaUser) {
         this.respuestaUser = respuestaUser;
     }
 

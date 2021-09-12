@@ -62,16 +62,16 @@ public class Data {
                     List<HashMap> preguntas= (List<HashMap>)document.get("Preguntas");
                     int level=document.getLong("Nivel").intValue();
                     LinkedList<Pregunta> ListaP = new LinkedList<Pregunta>();
-                     for(HashMap p: preguntas){
-                         ListaP.add(new Pregunta(p.get("Enunciado").toString(),((Long)p.get("Puntos")).intValue(),((Long)p.get("Respuesta")).intValue(),(List<String>)p.get("Opciones")));
-                     }
+                    preguntas.forEach(p -> {
+                        ListaP.add(new Pregunta(p.get("Enunciado").toString(),((Long)p.get("Puntos")).intValue(),((Long)p.get("Respuesta")).intValue(),(List<String>)p.get("Opciones")));
+                    });
                     Ronda r = new Ronda(level,ListaP);
                     ListaRondas.add(r);
                 }
     
                 return ListaRondas;
             }catch(Exception e){
-                System.out.print(e.toString());
+                System.out.print(e.getMessage());
                 return ListaRondas;
             }
     }

@@ -17,7 +17,8 @@ public class Jugador extends Mapper{
     
     String Name;
     int Document;
-       public Jugador(String Name,int Document) {
+    
+    public Jugador(String Name,int Document) {
        this.Name=Name;
        this.Document=Document;
     }
